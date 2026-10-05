@@ -1,24 +1,27 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Models;
 
-namespace Shop.Controllers;
-
-public class HomeController : Controller
+namespace Shop.Controllers
 {
-    public IActionResult Index()
+    public class HomeController : Controller
     {
-        return View();
-    }
+        public IActionResult Index()
+        {
+            // Truyền 9 sản phẩm mẫu sang View Trang chủ
+            var products = new List<CartItem>
+            {
+                new CartItem { ProductId = 1, ProductName = "Jeans midi cocktail dress 1", Price = 39.90m, ImageUrl = "/karl/img/product-img/product-1.jpg" },
+                new CartItem { ProductId = 2, ProductName = "Jeans midi cocktail dress 2", Price = 45.00m, ImageUrl = "/karl/img/product-img/product-2.jpg" },
+                new CartItem { ProductId = 3, ProductName = "Jeans midi cocktail dress 3", Price = 50.00m, ImageUrl = "/karl/img/product-img/product-3.jpg" },
+                new CartItem { ProductId = 4, ProductName = "Jeans midi cocktail dress 4", Price = 29.90m, ImageUrl = "/karl/img/product-img/product-4.jpg" }
+            };
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+            return View(products);
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult Contact()
+        {
+            return View();
+        }
     }
 }
