@@ -4,7 +4,21 @@
 @{
     // Lấy giỏ hàng từ Session
     var cart = Context.Session.GetObject<List<CartItem>>("MY_SHOP_CART") ?? new List<CartItem>();
-    var totalQuantity = cart.Sum(x => x.Quantity);
+    
+    // Ưu tiên lấy số lượng từ ViewBag (nếu có), nếu không sẽ tính từ Session
+    int totalQuantity = 0;
+    if (ViewBag.CartCount != null)
+    {
+        totalQuantity = (int)ViewBag.CartCount;
+    }
+    else if (ViewBag.Quantity != null)
+    {
+        totalQuantity = (int)ViewBag.Quantity;
+    }
+    else
+    {
+        totalQuantity = cart.Sum(x => x.Quantity);
+    }
 }
 
 <!-- ****** Header Area Start ****** -->
@@ -26,7 +40,7 @@
                             <div class="cart">
                                 <a asp-controller="Shop" asp-action="Cart" id="header-cart-btn" style="position: relative; display: inline-flex; align-items: center; gap: 6px;">
                                     <span class="ti-bag"></span> 
-                                    <span>Your Bag</span> 
+                                    <span>Giỏ hàng</span> 
                                     <span class="cart_quantity" style="background: #ff084e; color: #fff; border-radius: 50%; padding: 2px 7px; font-size: 11px; font-weight: bold; line-height: 1.2;">
                                         @totalQuantity
                                     </span>
@@ -46,7 +60,7 @@
                 <div class="col-12 d-md-flex justify-content-between">
                     <!-- Header Social Area -->
                     <div class="header-social-area">
-                        <span class="karl-level">Share</span>
+                        <span class="karl-level">Chia sẻ</span>
                         <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
                         <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                         <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
@@ -60,17 +74,17 @@
                             </button>
                             <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
                                 <ul class="navbar-nav animated" id="nav">
-                                    <li class="nav-item active"><a class="nav-link" asp-controller="Home" asp-action="Index">HOME</a></li>
-                                    <li class="nav-item"><a class="nav-link" asp-controller="Shop" asp-action="Index">SHOP</a></li>
-                                    <li class="nav-item"><a class="nav-link" asp-controller="Shop" asp-action="Details" asp-route-id="1">SHOP DETAIL</a></li>
-                                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Contact">CONTACT</a></li>
+                                    <li class="nav-item active"><a class="nav-link" asp-controller="Home" asp-action="Index">TRANG CHỦ</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Shop" asp-action="Index">CỬA HÀNG</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Shop" asp-action="Details" asp-route-id="1">CHI TIẾT</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Contact">LIÊN HỆ</a></li>
                                 </ul>
                             </div>
                         </nav>
                     </div>
                     <!-- Help Line -->
                     <div class="help-line-heading">
-                        <a href="tel:+346573556778"><i class="ti-headphone-alt"></i> +34 657 3556 778</a>
+                        <a href="tel:+84123456789"><i class="ti-headphone-alt"></i> +84 123 456 789</a>
                     </div>
                 </div>
             </div>

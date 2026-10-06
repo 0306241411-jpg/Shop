@@ -1,133 +1,166 @@
 @{
-    ViewData["Title"] = "Checkout";
+    ViewData["Title"] = "Thanh toán";
 }
 
 <!-- <<<<<<<<<<<<<<<<<<<< Checkout Area Start <<<<<<<<<<<<<<<<<<<< -->
 <div class="checkout_area section_padding_100">
     <div class="container">
-        <div class="row">
+        <form action="#" method="post">
+            <div class="row">
 
-            <div class="col-12 col-md-6">
-                <div class="checkout_details_area mt-50 clearfix">
+                <!-- THÔNG TIN GIAO HÀNG (BILLING ADDRESS) -->
+                <div class="col-12 col-md-6">
+                    <div class="checkout_details_area mt-50 clearfix">
 
-                    <div class="cart-page-heading">
-                        <h5>Billing Address</h5>
-                        <p>Enter your cupom code</p>
-                    </div>
+                        <div class="cart-page-heading">
+                            <h5>Thông tin giao hàng</h5>
+                            <p>Nhập thông tin nhận hàng của bạn</p>
+                        </div>
 
-                    <form action="#" method="post">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="first_name">First Name <span>*</span></label>
+                                <label for="first_name">Tên <span>*</span></label>
                                 <input type="text" class="form-control" id="first_name" value="" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="last_name">Last Name <span>*</span></label>
+                                <label for="last_name">Họ <span>*</span></label>
                                 <input type="text" class="form-control" id="last_name" value="" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="company">Company Name</label>
+                                <label for="company">Tên công ty (nếu có)</label>
                                 <input type="text" class="form-control" id="company" value="">
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="country">Country <span>*</span></label>
+                                <label for="country">Quốc gia <span>*</span></label>
                                 <select class="custom-select w-100" id="country">
-                                    <option value="usa">United States</option>
-                                    <option value="uk">United Kingdom</option>
-                                    <option value="ger">Germany</option>
-                                    <option value="fra">France</option>
-                                    <option value="vnm">Viet Nam</option>
+                                    <option value="vnm" selected>Việt Nam</option>
+                                    <option value="usa">Mỹ</option>
+                                    <option value="uk">Anh</option>
                                 </select>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="street_address">Address <span>*</span></label>
-                                <input type="text" class="form-control mb-3" id="street_address" value="">
+                                <label for="street_address">Địa chỉ nhận hàng <span>*</span></label>
+                                <input type="text" class="form-control mb-3" id="street_address" value="" placeholder="Số nhà, tên đường..." required>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="postcode">Postcode <span>*</span></label>
+                                <label for="postcode">Mã bưu điện</label>
                                 <input type="text" class="form-control" id="postcode" value="">
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="city">Town/City <span>*</span></label>
-                                <input type="text" class="form-control" id="city" value="">
+                                <label for="city">Tỉnh / Thành phố <span>*</span></label>
+                                <input type="text" class="form-control" id="city" value="" required>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="phone_number">Phone No <span>*</span></label>
-                                <input type="number" class="form-control" id="phone_number" min="0" value="">
+                                <label for="phone_number">Số điện thoại <span>*</span></label>
+                                <input type="number" class="form-control" id="phone_number" min="0" value="" required>
                             </div>
                             <div class="col-12 mb-4">
-                                <label for="email_address">Email Address <span>*</span></label>
-                                <input type="email" class="form-control" id="email_address" value="">
+                                <label for="email_address">Địa chỉ Email <span>*</span></label>
+                                <input type="email" class="form-control" id="email_address" value="" required>
                             </div>
 
                             <div class="col-12">
                                 <div class="custom-control custom-checkbox d-block mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">Terms and conidtions</label>
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                                    <label class="custom-control-label" for="customCheck1">Tôi đồng ý với các điều khoản & điều kiện</label>
                                 </div>
                                 <div class="custom-control custom-checkbox d-block mb-2">
                                     <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                    <label class="custom-control-label" for="customCheck2">Create an accout</label>
+                                    <label class="custom-control-label" for="customCheck2">Tạo tài khoản mới</label>
                                 </div>
                                 <div class="custom-control custom-checkbox d-block">
                                     <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                    <label class="custom-control-label" for="customCheck3">Subscribe to our newsletter</label>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
-                <div class="order-details-confirmation">
-
-                    <div class="cart-page-heading">
-                        <h5>Your Order</h5>
-                        <p>The Details</p>
-                    </div>
-
-                    <ul class="order-details-form mb-4">
-                        <li><span>Product</span> <span>Total</span></li>
-                        <li><span>Cocktail Dress x1</span> <span>$59.90</span></li>
-                        <li><span>Subtotal</span> <span>$59.90</span></li>
-                        <li><span>Shipping</span> <span>Free</span></li>
-                        <li><span>Total</span> <span>$59.90</span></li>
-                    </ul>
-
-                    <div id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingOne">
-                                <h6 class="mb-0">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i>Paypal</a>
-                                </h6>
-                            </div>
-
-                            <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="card-body">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integ er bibendum sodales arcu id te mpus.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingTwo">
-                                <h6 class="mb-0">
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-circle-o mr-3"></i>cash on delievery</a>
-                                </h6>
-                            </div>
-                            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="card-body">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est cumque et vitae qui sed senectus u meo meo.</p>
+                                    <label class="custom-control-label" for="customCheck3">Đăng ký nhận thông tin khuyến mãi</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <a href="#" class="btn karl-checkout-btn">Place Order</a>
                 </div>
-            </div>
 
-        </div>
+                <!-- THÔNG TIN ĐƠN HÀNG & PHƯƠNG THỨC THANH TOÁN -->
+                <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+                    <div class="order-details-confirmation">
+
+                        <div class="cart-page-heading">
+                            <h5>Đơn hàng của bạn</h5>
+                            <p>Chi tiết thanh toán</p>
+                        </div>
+
+                        <ul class="order-details-form mb-4">
+                            <li><span>Sản phẩm</span> <span>Tổng tiền</span></li>
+                            <li><span>Jeans midi cocktail dress 1 x1</span> <span>$39.90</span></li>
+                            <li><span>Tạm tính</span> <span>$39.90</span></li>
+                            <li><span>Phí vận chuyển</span> <span>Miễn phí</span></li>
+                            <li><span>Tổng thanh toán</span> <span style="color: #ff084e; font-weight: bold;">$39.90</span></li>
+                        </ul>
+
+                        <!-- PHƯƠNG THỨC THANH TOÁN CÓ NÚT RADIO -->
+                        <div id="accordion" role="tablist" aria-multiselectable="true" class="mb-4">
+
+                            <!-- 1. Thanh toán khi nhận hàng (COD) -->
+                            <div class="card mb-2" style="border: 1px solid #eee;">
+                                <div class="card-header bg-white p-3" role="tab" id="headingOne">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="radio_cod" name="PaymentMethod" value="COD" class="custom-control-input" checked data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <label class="custom-control-label font-weight-bold text-dark" for="radio_cod" style="cursor: pointer;">
+                                            Thanh toán khi nhận hàng (COD)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body text-muted py-2" style="font-size: 13px;">
+                                        Bạn sẽ thanh toán trực tiếp bằng tiền mặt cho nhân viên giao hàng khi nhận được sản phẩm.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. Chuyển khoản Ngân hàng (Banking) -->
+                            <div class="card mb-2" style="border: 1px solid #eee;">
+                                <div class="card-header bg-white p-3" role="tab" id="headingTwo">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="radio_banking" name="PaymentMethod" value="Banking" class="custom-control-input" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <label class="custom-control-label font-weight-bold text-dark" for="radio_banking" style="cursor: pointer;">
+                                            Chuyển khoản Ngân hàng (Banking)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body text-muted py-2" style="font-size: 13px;">
+                                        <p class="mb-1"><strong>Ngân hàng:</strong> MBBank (Ngân hàng Quân Đội)</p>
+                                        <p class="mb-1"><strong>Số tài khoản:</strong> 0987654321</p>
+                                        <p class="mb-1"><strong>Chủ tài khoản:</strong> KARL FASHION</p>
+                                        <p class="mb-0 text-danger" style="font-size: 12px;">*Nội dung CK: [Họ tên] - [SĐT]</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Ví điện tử MoMo -->
+                            <div class="card mb-2" style="border: 1px solid #eee;">
+                                <div class="card-header bg-white p-3" role="tab" id="headingThree">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="radio_momo" name="PaymentMethod" value="MoMo" class="custom-control-input" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        <label class="custom-control-label font-weight-bold text-dark" for="radio_momo" style="cursor: pointer;">
+                                            Ví điện tử MoMo
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <div class="card-body text-muted py-2" style="font-size: 13px;">
+                                        <p class="mb-1"><strong>Số ví MoMo:</strong> 0987654321</p>
+                                        <p class="mb-1"><strong>Chủ tài khoản:</strong> KARL FASHION</p>
+                                        <p class="mb-0 text-danger" style="font-size: 12px;">*Vui lòng ghi rõ SĐT trong lời nhắn chuyển tiền.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn karl-checkout-btn w-100 border-0" style="background-color: #ff084e; color: #fff; font-weight: bold;">ĐẶT HÀNG</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
     </div>
 </div>
 <!-- <<<<<<<<<<<<<<<<<<<< Checkout Area End <<<<<<<<<<<<<<<<<<<< -->

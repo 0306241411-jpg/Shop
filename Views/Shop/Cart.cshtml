@@ -1,8 +1,4 @@
 @model List<Shop.Models.CartItem>
-@{
-    ViewData["Title"] = "Cart";
-    decimal total = Model != null ? Model.Sum(x => x.Total) : 0m;
-}
 
 <div class="cart_area section_padding_100 clearfix">
     <div class="container">
@@ -12,63 +8,68 @@
                     <table class="table table-responsive">
                         <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
+                                <th>Sản phẩm</th>
+                                <th>Đơn giá</th>
+                                <th>Số lượng</th>
+                                <th>Tổng tiền</th>
+                                <th>Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if (Model != null && Model.Count > 0)
+                            <!-- Hiển thị sản phẩm trong giỏ hàng -->
+                            @if (ViewBag.Quantity > 0)
                             {
-                                foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td class="cart_product_img d-flex align-items-center">
-                                            <a href="#"><img src="@item.ImageUrl" alt="@item.ProductName"></a>
-                                            <h6>@item.ProductName</h6>
-                                        </td>
-                                        <td class="price"><span>$@item.Price.ToString("F2")</span></td>
-                                        <td class="qty">
-                                            <span>@item.Quantity</span>
-                                        </td>
-                                        <td class="total_price"><span>$@item.Total.ToString("F2")</span></td>
-                                    </tr>
-                                }
+                                <tr>
+                                    <td class="cart_product_img d-flex align-items-center">
+                                        <a href="#"><img src="/karl/img/product-img/product-1.jpg" alt="Sản phẩm"></a>
+                                        <h6>Jeans midi cocktail dress 1</h6>
+                                    </td>
+                                    <td class="price"><span>$39.90</span></td>
+                                    <td class="qty">
+                                        <div class="quantity" style="display: flex; align-items: center; gap: 5px;">
+                                            <a asp-controller="Shop" asp-action="UpdateCart" asp-route-id="1" asp-route-quantity="@(ViewBag.Quantity - 1)" class="btn btn-sm btn-outline-secondary">-</a>
+                                            <input type="number" class="qty-text form-control text-center" style="width: 50px;" value="@ViewBag.Quantity" readonly>
+                                            <a asp-controller="Shop" asp-action="UpdateCart" asp-route-id="1" asp-route-quantity="@(ViewBag.Quantity + 1)" class="btn btn-sm btn-outline-secondary">+</a>
+                                        </div>
+                                    </td>
+                                    <td class="total_price"><span>$@(39.90m * ViewBag.Quantity)</span></td>
+                                    <td class="action">
+                                        <a asp-controller="Shop" asp-action="RemoveFromCart" asp-route-id="1" class="btn btn-outline-danger btn-sm" style="border-radius: 50%;" title="Xóa">
+                                            <i class="ti-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             }
                             else
                             {
                                 <tr>
-                                    <td colspan="4" class="text-center">Giỏ hàng của bạn đang trống!</td>
+                                    <td colspan="5" class="text-center py-4">
+                                        <h5>Giỏ hàng của bạn đang trống!</h5>
+                                    </td>
                                 </tr>
                             }
                         </tbody>
                     </table>
                 </div>
 
-                <div class="cart-footer d-flex mt-30">
-                    <div class="back-to-shop w-50">
-                        <a asp-controller="Shop" asp-action="Index">Continue shopping</a>
+                <!-- Khu vực nút điều hướng & Nút Thanh toán -->
+                <div class="cart-footer d-flex justify-content-between align-items-center mt-30">
+                    <div class="back-to-shop">
+                        <a asp-controller="Shop" asp-action="Index" class="btn karl-checkout-btn" style="background-color: #f5f7fa; color: #000; border: 1px solid #000; padding: 12px 30px; font-weight: bold;">
+                            TIẾP TỤC MUA SẮM
+                        </a>
                     </div>
+                    
+                    @if (ViewBag.Quantity > 0)
+                    {
+                        <div class="proceed-checkout">
+                            <a asp-controller="Shop" asp-action="Checkout" class="btn karl-checkout-btn" style="background-color: #ff084e; color: #fff; padding: 12px 30px; font-weight: bold; border-radius: 0;">
+                                TIẾP TỤC THANH TOÁN <i class="ti-arrow-right" style="margin-left: 5px;"></i>
+                            </a>
+                        </div>
+                    }
                 </div>
 
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-lg-4 ml-auto">
-                <div class="cart-total-area mt-70">
-                    <div class="cart-page-heading">
-                        <h5>Cart total</h5>
-                    </div>
-
-                    <ul class="cart-total-chart">
-                        <li><span>Subtotal</span> <span>$@total.ToString("F2")</span></li>
-                        <li><span>Shipping</span> <span>Free</span></li>
-                        <li><span><strong>Total</strong></span> <span><strong>$@total.ToString("F2")</strong></span></li>
-                    </ul>
-                    <a asp-controller="Shop" asp-action="Checkout" class="btn karl-checkout-btn">Proceed to checkout</a>
-                </div>
             </div>
         </div>
     </div>

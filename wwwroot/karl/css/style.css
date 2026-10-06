@@ -11,3 +11,13 @@
     /* -------------------------------------------------
     ============ PLACE YOUR CUSTOM CSS HERE ============
     ------------------------------------------------- */
+/* Luôn hiển thị cố định mũi tên tăng/giảm số lượng */
+/* Ẩn mũi tên mặc định của trình duyệt */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}

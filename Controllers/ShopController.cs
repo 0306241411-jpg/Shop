@@ -6,6 +6,7 @@ namespace Shop.Controllers
     public class ShopController : Controller
     {
         private const string CART_KEY = "MY_SHOP_CART";
+        private static int currentCartQty = 1;
 
         private List<CartItem> GetMockProducts()
         {
@@ -34,14 +35,17 @@ namespace Shop.Controllers
             return View();
         }
 
-        public IActionResult Details(int? id)
+        // Action hiển thị trang chi tiết sản phẩm
+        public IActionResult Details(int id = 1)
         {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
+            string[] prices = { "$39.90", "$45.00", "$50.00", "$35.00", "$49.90", "$60.00" };
+            int index = (id >= 1 && id <= prices.Length) ? id - 1 : 0;
 
             ViewBag.ProductId = id;
+            ViewBag.ProductName = $"Jeans midi cocktail dress {id}";
+            ViewBag.ProductPrice = prices[index];
+            ViewBag.ProductImage = $"/karl/img/product-img/product-{id}.jpg";
+
             return View();
         }
 
@@ -51,7 +55,6 @@ namespace Shop.Controllers
             var cart = GetCartFromSession();
             var mockProducts = GetMockProducts();
 
-            // Tìm chính xác sản phẩm theo ID
             var product = mockProducts.FirstOrDefault(p => p.ProductId == id);
 
             if (product != null)
@@ -59,7 +62,7 @@ namespace Shop.Controllers
                 var existingItem = cart.FirstOrDefault(c => c.ProductId == product.ProductId);
                 if (existingItem != null)
                 {
-                    existingItem.Quantity += quantity; // Cộng dồn số lượng nếu đã có trong giỏ
+                    existingItem.Quantity += quantity;
                 }
                 else
                 {
@@ -74,15 +77,49 @@ namespace Shop.Controllers
                 }
 
                 HttpContext.Session.SetObject(CART_KEY, cart);
+                currentCartQty = cart.Sum(c => c.Quantity);
             }
 
             return RedirectToAction("Cart");
         }
 
+        // Hiển thị giỏ hàng
         public IActionResult Cart()
         {
+            ViewBag.Quantity = currentCartQty;
+            ViewBag.CartCount = currentCartQty;
+            return View();
+        }
+
+        // Cập nhật số lượng (+ / -)
+        public IActionResult UpdateCart(int id, int quantity)
+        {
+            // GIỮ NGUYÊN TỐI THIỂU LÀ 1: Nếu bấm trừ khi đang là 1 thì vẫn giữ là 1, không cho về 0
+            if (quantity < 1)
+            {
+                quantity = 1;
+            }
+
+            currentCartQty = quantity;
+
+            // Đồng bộ lại dữ liệu trong Session nếu có
             var cart = GetCartFromSession();
-            return View(cart);
+            var item = cart.FirstOrDefault(c => c.ProductId == id);
+            if (item != null)
+            {
+                item.Quantity = quantity;
+                HttpContext.Session.SetObject(CART_KEY, cart);
+            }
+
+            return RedirectToAction("Cart");
+        }
+
+        // CHỈ XÓA SẢN PHẨM KHI BẤM NÚT THÙNG RÁC
+        public IActionResult RemoveFromCart(int id)
+        {
+            currentCartQty = 0;
+            HttpContext.Session.Remove(CART_KEY); // Xóa sạch giỏ hàng khi bấm xóa
+            return RedirectToAction("Cart");
         }
 
         public IActionResult Checkout()

@@ -237,7 +237,6 @@ D:\Shop\obj\Debug\net10.0\refint\Shop.dll
 D:\Shop\obj\Debug\net10.0\Shop.pdb
 D:\Shop\obj\Debug\net10.0\Shop.genruntimeconfig.cache
 D:\Shop\obj\Debug\net10.0\ref\Shop.dll
-D:\Shop\obj\Debug\net10.0\compressed\3nxzd93od9-{0}-i4qf9piafi-i4qf9piafi.gz
 D:\Shop\obj\Debug\net10.0\compressed\2f5ferf3xj-{0}-bhrxaht8ww-bhrxaht8ww.gz
 D:\Shop\obj\Debug\net10.0\compressed\4uc4p10k7x-{0}-p4l3ph5mj3-p4l3ph5mj3.gz
 D:\Shop\obj\Debug\net10.0\compressed\jzkjzxggmu-{0}-isc7u9n7qi-isc7u9n7qi.gz
@@ -248,3 +247,4 @@ D:\Shop\obj\Debug\net10.0\compressed\691sctyde1-{0}-wxwxrej6pw-wxwxrej6pw.gz
 D:\Shop\obj\Debug\net10.0\compressed\243yz067ot-{0}-islyxa57bt-islyxa57bt.gz
 D:\Shop\obj\Debug\net10.0\compressed\7gfxu3ttyq-{0}-t1t3d9112w-t1t3d9112w.gz
 D:\Shop\obj\Debug\net10.0\compressed\k1c9008mjg-{0}-0l0rmi35qv-0l0rmi35qv.gz
+D:\Shop\obj\Debug\net10.0\compressed\3nxzd93od9-{0}-evq6076tvu-evq6076tvu.gz
